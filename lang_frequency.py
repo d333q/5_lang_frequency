@@ -1,6 +1,7 @@
 import os
 import re
 from collections import Counter
+import string
 
 
 def load_data(filepath):
@@ -11,12 +12,19 @@ def load_data(filepath):
 
 
 def get_most_frequent_words(text):
-    words = re.findall('\w+', text)
-    return Counter(words).most_common(10)
+    lowercase = text.lower()
+    words = re.findall('\w+', lowercase)
+    frequencywords = Counter(words).most_common(10)
+    return frequencywords
+
+
+def print_words_count(frequencywords):
+    print('10 часто используемых слов в данном тексте')
+    for number in frequencywords:
+        print (number)
 
 
 if __name__ == '__main__':
     text = load_data(input('Введите названия файла '))
-    print ('''10 самых встречаемых слов в данном тексте
-{0}\n{1}\n{2}\n{3}\n{4}\n{5}\n{6}\n{7}\n{8}\n{9}'''.format(
-        *get_most_frequent_words(text)))
+    frequencywords = get_most_frequent_words(text)
+    print_words_count(frequencywords)
