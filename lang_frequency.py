@@ -14,7 +14,8 @@ def load_data(filepath):
 def get_most_frequent_words(text):
     lowercase = text.lower()
     words = re.findall('\w+', lowercase)
-    frequencywords = Counter(words).most_common(10)
+    amountwordsshow = 10
+    frequencywords = Counter(words).most_common(amountwordsshow)
     return frequencywords
 
 
